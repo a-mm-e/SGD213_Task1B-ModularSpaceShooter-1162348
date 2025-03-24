@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class SpawnOverTimeScript : MonoBehaviour
 {
-
     // Object to spawn
     [SerializeField]
     private GameObject spawnObject;
@@ -14,29 +12,29 @@ public class SpawnOverTimeScript : MonoBehaviour
 
     private Renderer ourRenderer;
 
-    // Use this for initialization
+    // Initialise and start the spawning process. 
     void Start()
     {
-
         ourRenderer = GetComponent<Renderer>();
 
-        // Stop our Spawner from being visible!
+        // Hide the spawner object (set the renderer inactive). 
         ourRenderer.enabled = false;
 
-        // Call the given function after spawnDelay seconds, 
-        // and then repeatedly call it after spawnDelay seconds.
+       // Start spawning objects at intervals. 
         InvokeRepeating("Spawn", spawnDelay, spawnDelay);
     }
 
+    // Method to spawn objects randomly within the spawner's bounds. 
     void Spawn()
     {
-        float x1 = transform.position.x - ourRenderer.bounds.size.x / 2;
-        float x2 = transform.position.x + ourRenderer.bounds.size.x / 2;
+        // Calculate the horizontal bounds for spawning. 
+        float x1 = transform.position.x - ourRenderer.bounds.extents.x;
+        float x2 = transform.position.x + ourRenderer.bounds.extents.x;
 
-        // Randomly pick a point within the spawn object
+        // Randomly pick a point within these bounds. 
         Vector2 spawnPoint = new Vector2(Random.Range(x1, x2), transform.position.y);
 
-        // Spawn the object at the 'spawnPoint' position
+        // Instantiate the object at the random spawn point. 
         Instantiate(spawnObject, spawnPoint, Quaternion.identity);
     }
 }

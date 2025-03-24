@@ -14,7 +14,7 @@ public class EnemyMoveForward : MonoBehaviour {
     {
         ourRigidbody = GetComponent<Rigidbody2D>();
 
-        ourRigidbody.velocity = Vector2.down * initialVelocity;
+        ourRigidbody.linearVelocity = Vector2.down * initialVelocity;
     }
 
     // Update is called once per frame

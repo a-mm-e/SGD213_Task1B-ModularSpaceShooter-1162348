@@ -14,7 +14,7 @@ public class BulletMoveForward : MonoBehaviour {
     {
         ourRigidbody = GetComponent<Rigidbody2D>();
 
-        ourRigidbody.velocity = Vector2.up * initialVelocity;
+        ourRigidbody.linearVelocity = Vector2.up * initialVelocity;
     }
 
     // Update is called once per frame
