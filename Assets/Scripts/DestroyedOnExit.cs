@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class DestroyedOnExit : MonoBehaviour
 {
-
-    // Called when the object leaves the viewport
+    /// <summary>
+    /// Called when the object leaves the viewport
+    /// </summary>
     void OnBecameInvisible()
     {
         Destroy(gameObject);
