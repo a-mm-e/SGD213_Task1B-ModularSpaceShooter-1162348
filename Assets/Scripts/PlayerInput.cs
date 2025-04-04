@@ -8,7 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerInput : MonoBehaviour
 {
-
     // local references
     private PlayerMovement playerMovement;
 

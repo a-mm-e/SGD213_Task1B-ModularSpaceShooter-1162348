@@ -2,35 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIMoveAndShoot : MonoBehaviour {
-
-    // state
+public class AIMoveAndShoot : MonoBehaviour 
+{
+    // Movement direction. 
     private Vector2 movementDirection;
 
-    // local references
+    // Local references. 
     private EnemyMovement enemyMovement;
     private WeaponBase weapon;
 
-    void Start() {
-        // populate our local references
+    private void Start() 
+    {
+        // Populate local references. 
         enemyMovement = GetComponent<EnemyMovement>();
         weapon = GetComponent<WeaponBase>();
 
-        // get a random direction between South-East and South-West
-        float x = Random.Range(-0.5f, 0.5f);
-        float y = -0.5f;
-        movementDirection = new Vector2(x, y).normalized; // ensure it is normalised
+        // Generate a downward-biased movement direction. 
+        movementDirection = (Vector2.down + Random.insideUnitCircle * 0.5f).normalized;
+    }
+
+    private void FixedUpdate()
+    {
+        // Move the enemy if EnemyMovement is available. 
+        if (enemyMovement != null)
+        {
+            enemyMovement.MoveEnemy(movementDirection);
+        }
     }
 
     // Update is called once per frame
-    void Update () {
-        // move our enemy if we have a EnemyMovement component attached
-        if (enemyMovement != null) {
-            enemyMovement.MoveEnemy(movementDirection);
-        }
-
-        // shoot if we have a IWeapon component attached
-        if (weapon != null) {
+    void Update () 
+    {
+        // Shoot if a WeaponBase/IWeapon component is attached. 
+        if (weapon != null) 
+        {
             weapon.Shoot();
         }
     }

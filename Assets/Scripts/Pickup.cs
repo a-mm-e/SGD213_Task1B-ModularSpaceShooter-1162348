@@ -10,14 +10,13 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField]
-    public WeaponType weaponType;
+    private WeaponType weaponType;
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.CompareTag("Player"))
         {
-            GameObject player = col.gameObject;
-            HandlePlayerPickup(player);
+            HandlePlayerPickup(col.gameObject);
         }
     }
 
@@ -38,18 +37,25 @@ public class Pickup : MonoBehaviour
     /// <param name="player"></param>
     private void HandlePlayerPickup(GameObject player)
     {
-        // get the playerInput from the player
         PlayerInput playerInput = player.GetComponent<PlayerInput>();
-        // handle a case where the player doesnt have a PlayerInput
-        if (playerInput == null) {
+
+        // Handle a case where the player doesnt have a PlayerInput component. 
+        if (playerInput == null) 
+        {
             Debug.LogError("Player doesn't have a PlayerInput component.");
             return;
-        } else {
-            // tell the playerInput to SwapWeapon based on our weaponType
-            playerInput.SwapWeapon(weaponType);
-        }
+        } 
+        //Swap weapon based on the weaponType
+        playerInput.SwapWeapon(weaponType);
     }
 
 }
 
-public enum WeaponType { machineGun, tripleShot }
+/// <summary>
+/// WeaponType enumerates all possible weapons that can be picked up. 
+/// </summary>
+public enum WeaponType 
+{ 
+    machineGun, 
+    tripleShot 
+}

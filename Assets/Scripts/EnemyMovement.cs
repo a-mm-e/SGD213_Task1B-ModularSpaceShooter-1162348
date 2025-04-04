@@ -5,29 +5,30 @@ using UnityEngine;
 /// <summary>
 /// EnemyMovement handles all of the movement specifc state and behaviour for the enemy.
 /// </summary>
-public class EnemyMovement : MonoBehaviour {
-
-    // enemyAcceleration indicates how fast the enemy accelerates
+public class EnemyMovement : MonoBehaviour 
+{
+    // enemyAcceleration indicates how fast the enemy accelerates.
     [SerializeField]
     private float enemyAcceleration = 5000f;
 
-    // local references
-    private Rigidbody2D ourRigidbody;
+    // Local reference to the enemy's Rigidbody2D component. 
+    private Rigidbody2D enemyRigidbody;
 
-    void Start() {
-        // populate ourRigidbody
-        ourRigidbody = GetComponent<Rigidbody2D>();
+    void Start() 
+    {
+        // Initialise Rigidbody2D reference. 
+        enemyRigidbody = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>
-    /// MoveEnemy takes a direction as a parameter, and applies a force in this provided direction
-    /// to ourRigidbody, based on the enemyAcceleration variables and the delta time.
+    /// Moves the enemy by applying a force based on the provided direction. 
     /// </summary>
     /// <param name="horizontalInput">A direction vector, expected to be a unit vector (magnitude of 1).</param>
-    public void MoveEnemy(Vector2 direction) {
-        //calculate our force to add
+    public void MoveEnemy(Vector2 direction) 
+    {
+        // Calculate the force to apply based on the direction, acceleration, and delta time. 
         Vector2 forceToAdd = direction * enemyAcceleration * Time.deltaTime;
-        // apply forceToAdd to ourRigidbody
-        ourRigidbody.AddForce(forceToAdd);
+        // Apply the calculated force to the Rigidbody2D. 
+        enemyRigidbody.AddForce(forceToAdd);
     }
 }

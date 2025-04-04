@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-
     [Header("Controls")]
     [SerializeField]
     protected float fireDelay = 1f;
@@ -31,7 +30,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     /// <summary>
     /// Shoot is intended to be the access point for shooting mechanics. In concrete implementations it is intended that it 
-    /// should only fire when enough time has passed compared to our fireDelay.
+    /// should only fire when enough time has passed compared to the fireDelay.
     /// </summary>
     public abstract void Shoot();
 
@@ -42,7 +41,9 @@ public abstract class WeaponBase : MonoBehaviour
     /// <param name="oldWeapon">The existing weapon that will be used to grab WeaponBase controls from</param>
     public virtual void UpdateWeaponControls(WeaponBase oldWeapon)
     {
-        // update the data of the new weapon with the data from this weapon
+        if (oldWeapon != null) return;
+
+        // Update the data of the new weapon with the data from the old weapon. 
         bulletSpawnPoint = oldWeapon.BulletSpawnPoint;
         bullet = oldWeapon.Bullet;
     }
