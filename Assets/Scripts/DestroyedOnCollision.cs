@@ -1,33 +1,16 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
-public enum TagListType
+/// <summary>
+/// DestroyedOnCollision gives the attached object a collision behaviour, that will destroy the
+/// attached object depending on a list of tags, and whether they should be considered, or ignored.
+/// </summary>
+public class DestroyedOnCollision : DetectCollisionBase
 {
-    Blacklist,
-    Whitelist
-}
-
-public class DestroyedOnCollision : MonoBehaviour
-{
-    [SerializeField]
-    private TagListType tagListType = TagListType.Blacklist;
-
-    [SerializeField]
-    private List<string> tags = new List<string>();
-
-    /// <summary>
-    /// Handles collision logic based on tag filtering.
-    /// Destroys the GameObject depending on Blacklist or Whitelist behaviour.
-    /// </summary>
-    /// <param name="other">The Collider2D that triggered this event.</param>
-    void OnTriggerEnter2D(Collider2D other)
+    protected override void ProcessCollision(GameObject other) 
     {
-        bool tagInList = tags.Contains(other.gameObject.tag);
-        
-        if ((tagListType == TagListType.Blacklist && tagInList) ||
-                (tagListType == TagListType.Whitelist && !tagInList))
-        {
-            Destroy(gameObject);
-        }
+        base.ProcessCollision(other);
+        Destroy(other);
     }
 }
