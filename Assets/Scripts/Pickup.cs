@@ -47,6 +47,9 @@ public class Pickup : MonoBehaviour
         } 
         //Swap weapon based on the weaponType
         playerInput.SwapWeapon(weaponType);
+
+        //Destroy the pickup after use. 
+        Destroy(gameObject);
     }
 
 }

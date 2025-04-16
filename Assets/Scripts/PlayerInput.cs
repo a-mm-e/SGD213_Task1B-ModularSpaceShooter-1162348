@@ -65,8 +65,9 @@ public class PlayerInput : MonoBehaviour
     /// <param name="weaponType">The given weaponType to swap our current weapon to, this is an enum in WeaponBase.cs</param>
     public void SwapWeapon(WeaponType weaponType)
     {
-        // make a new weapon dependent on the weaponType
+        // Create the new weapon
         WeaponBase newWeapon = null;
+
         switch (weaponType)
         {
             case WeaponType.machineGun:
@@ -77,11 +78,22 @@ public class PlayerInput : MonoBehaviour
                 break;
         }
 
-        // update the data of our newWeapon with that of our current weapon
-        newWeapon.UpdateWeaponControls(weapon);
-        // remove the old weapon
-        Destroy(weapon);
-        // set our current weapon to be the newWeapon
-        weapon = newWeapon;
+        // Update the data of our newWeapon with that of our current weapon
+        if (newWeapon == null)
+        {
+            Debug.LogError("Failed to create new weapon of type: " + weaponType);
+        }
+        
+       //Transfer any data/settings
+       if (weapon != null)
+       {
+            newWeapon.UpdateWeaponControls(weapon);
+            Destroy(weapon);
+       }
+
+       weapon = newWeapon;
+
+        Debug.Log($"Swapped to: {weaponType}, Current weapon: {newWeapon.GetType().Name}");
     }
+
 }

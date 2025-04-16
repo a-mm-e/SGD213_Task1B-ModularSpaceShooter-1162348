@@ -41,7 +41,7 @@ public abstract class WeaponBase : MonoBehaviour
     /// <param name="oldWeapon">The existing weapon that will be used to grab WeaponBase controls from</param>
     public virtual void UpdateWeaponControls(WeaponBase oldWeapon)
     {
-        if (oldWeapon != null) return;
+        if (oldWeapon == null) return;
 
         // Update the data of the new weapon with the data from the old weapon. 
         bulletSpawnPoint = oldWeapon.BulletSpawnPoint;

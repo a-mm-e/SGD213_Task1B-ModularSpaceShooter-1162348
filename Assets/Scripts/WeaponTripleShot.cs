@@ -9,7 +9,7 @@ public class WeaponTripleShot : WeaponBase
     /// </summary>
     public override void Shoot() 
     {
-        // get the current time
+        // Get the current time
         float currentTime = Time.time;
 
         // Check if enough time has passed since the last shot. 
