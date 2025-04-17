@@ -1,32 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// EngineBase is a universal movement controller that can be 
+/// </summary>
 public class EngineBase : MonoBehaviour
 {
-    // acceleration indicates how fast the enemy accelerates
+    // Acceleration of the game object. 
     [SerializeField]
-    private float acceleration = 5000f;
+    private float moveForce = 5000f;
 
-    // local references
-    private Rigidbody2D ourRigidbody;
+    // Local references. 
+    private Rigidbody2D rb;
 
-    void Start()
+    private void Start()
     {
-        // populate ourRigidbody
-        ourRigidbody = GetComponent<Rigidbody2D>();
+        //Populate the Rigidbody2D
+        rb = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>
-    /// Accelerate takes a direction as a parameter, and applies a force in this provided direction
-    /// to ourRigidbody, based on the acceleration variables and the delta time.
+    /// Applies movement force in the given direction. 
     /// </summary>
-    /// <param name="horizontalInput">A direction vector, expected to be a unit vector (magnitude of 1).</param>
-    public void Accelerate(Vector2 direction)
+    /// <param name="direction">A direction vector, expected to be a unit vector (magnitude of 1).</param>
+    public void Move(Vector2 direction)
     {
-        //calculate our force to add
-        Vector2 forceToAdd = direction * acceleration * Time.deltaTime;
+        //Calculate the force to add.
+        Vector2 force = direction * moveForce * Time.deltaTime;
         // apply forceToAdd to ourRigidbody
-        ourRigidbody.AddForce(forceToAdd);
+        rb.AddForce(force);
     }
 }

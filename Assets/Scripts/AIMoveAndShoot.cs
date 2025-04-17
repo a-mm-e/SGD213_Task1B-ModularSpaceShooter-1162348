@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +8,13 @@ public class AIMoveAndShoot : MonoBehaviour
     private Vector2 movementDirection;
 
     // Local references. 
-    private EnemyMovement enemyMovement;
+    private EngineBase engine;
     private WeaponBase weapon;
 
     private void Start() 
     {
         // Populate local references. 
-        enemyMovement = GetComponent<EnemyMovement>();
+        engine = GetComponent<EngineBase>();
         weapon = GetComponent<WeaponBase>();
 
         // Generate a downward-biased movement direction. 
@@ -24,9 +24,9 @@ public class AIMoveAndShoot : MonoBehaviour
     private void FixedUpdate()
     {
         // Move the enemy if EnemyMovement is available. 
-        if (enemyMovement != null)
+        if (engine != null)
         {
-            enemyMovement.MoveEnemy(movementDirection);
+            engine.Move(movementDirection);
         }
     }
 
