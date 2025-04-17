@@ -15,7 +15,7 @@ public class AIMoveAndShoot : MonoBehaviour
     {
         // Populate local references. 
         engine = GetComponent<EngineBase>();
-        weapon = GetComponent<WeaponBase>();
+        weapon = GetComponentInChildren<WeaponBase>();
 
         // Generate a downward-biased movement direction. 
         movementDirection = (Vector2.down + Random.insideUnitCircle * 0.5f).normalized;
