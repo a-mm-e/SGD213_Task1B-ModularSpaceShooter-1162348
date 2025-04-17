@@ -20,5 +20,16 @@ public class DamageOnCollision : DetectCollisionBase
         }
 
         Destroy(gameObject);
+
+        /*IHealth healthComponent = other.GetComponentInParent<IHealth>();
+        if (healthComponent != null)
+        {
+            Debug.Log($"Collision with: {other.name} at time {Time.time}"); 
+            healthComponent.TakeDamage(damageToDeal);
+        }
+        else
+        {
+            Debug.Log($"{other.name} or its parent does not have an IHealth component.");
+        }*/
     }
 }

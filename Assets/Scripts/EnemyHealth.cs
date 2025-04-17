@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IHealth
@@ -34,9 +36,10 @@ public class EnemyHealth : MonoBehaviour, IHealth
     /// <param name="damageAmount">The amount of damage to lose, this value should be positive</param>
     public void TakeDamage(int damageAmount)
     {
+        Debug.Log(gameObject.name + "took damage" + damageAmount);
         currentHealth -= damageAmount;
 
-        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
+        //UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -50,8 +53,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
     /// </summary>
     public void Die()
     {
-        // would be good to do some death animation here maybe
-        // remove this object from the game
+        Debug.Log(gameObject.name + "died");
         Destroy(gameObject);
     }
 }

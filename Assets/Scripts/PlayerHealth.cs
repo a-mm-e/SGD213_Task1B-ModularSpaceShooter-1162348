@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Start()
     {
         currentHealth = maxHealth;
+        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
     }
 
     // <summary>
@@ -41,6 +42,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         currentHealth -= damageAmount;
 
         UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
+        Debug.Log("Health updated on UI: " + currentHealth + "/" + maxHealth);
 
         if (currentHealth <= 0)
         {
@@ -54,8 +56,8 @@ public class PlayerHealth : MonoBehaviour, IHealth
     /// </summary>
     public void Die()
     {
-        // would be good to do some death animation here maybe
-        // remove this object from the game
-        Destroy(gameObject);
+        Debug.Log("Player died. Destroying object... ");
+        GetComponent<Renderer>().material.color = Color.red;
+        Destroy(gameObject, 1f);
     }
 }
