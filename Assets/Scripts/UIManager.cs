@@ -10,16 +10,35 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Slider sldPlayerHealth;
 
-    // Start is called before the first frame update
-    void Start()
+    // Ensure the instance is set up as early as possible. 
+    private void Awake()
     {
-        if (instance != null) {
-            Debug.LogError("There is more than one UIManager in the scene, this will break the Singleton pattern.");
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
         }
         instance = this;
     }
 
-    public void UpdatePlayerHealthSlider(float percentage) {
-        sldPlayerHealth.value = percentage;
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (instance != this) 
+        {
+            Debug.LogError("UIManager instance is not assigned correctly.");
+        }
+    }
+
+    public void UpdatePlayerHealthSlider(float percentage) 
+    {
+        if (sldPlayerHealth != null)
+        {
+            sldPlayerHealth.value = percentage;
+        }
+        else 
+        {
+            Debug.LogError("Health slider is not assigned in the UIManager.");
+        }   
     }
 }

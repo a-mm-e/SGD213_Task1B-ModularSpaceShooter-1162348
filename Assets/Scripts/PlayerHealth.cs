@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
     void Start()
     {
         currentHealth = maxHealth;
-        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
+        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth); //Ensure health bar is set up on game start. 
     }
 
     // <summary>
@@ -26,10 +26,13 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         Debug.Log("Player received health: " + healingAmount);
         currentHealth += healingAmount;
+        //Prevent overhealing. 
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
+
+        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth); // Update health slider. 
     }
 
     /// <summary>
@@ -41,7 +44,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
         Debug.Log("Player took damage: " + damageAmount);
         currentHealth -= damageAmount;
 
-        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth);
+        UIManager.instance.UpdatePlayerHealthSlider((float)currentHealth / (float)maxHealth); // Update health slider. 
         Debug.Log("Health updated on UI: " + currentHealth + "/" + maxHealth);
 
         if (currentHealth <= 0)
