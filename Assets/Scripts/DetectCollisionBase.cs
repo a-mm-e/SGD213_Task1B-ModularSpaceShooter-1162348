@@ -8,8 +8,10 @@ public class DetectCollisionBase : MonoBehaviour
     [SerializeField]
     private TagListType tagListType = TagListType.Blacklist;
 
-    // A list of tags which we use to determine whether to explode or not
-    // Depending on the tagListType (Blacklist or Whitelist)
+    /// <summary>
+    /// A list of tags which we use to determine whether to explode or not.
+    /// Depending on the tagListType (Blacklist or Whitelist)
+    /// </summary>
     [SerializeField]
     private List<string> tags;
 

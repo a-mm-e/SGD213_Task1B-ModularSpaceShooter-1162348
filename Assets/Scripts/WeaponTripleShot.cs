@@ -30,41 +30,8 @@ public class WeaponTripleShot : WeaponBase
                 // Instantiate the bullet with new position offset and rotation. 
                 Instantiate(bullet, bulletSpawnPoint.position + spawnOffset, transform.rotation * rotationOffset);
             }
-
-
-        // Check if enough time has passed since the last shot. 
-       /* if (currentTime - lastFiredTime > fireDelay) 
-        {
-            if (bullet == null || bulletSpawnPoint == null)
-            {
-                Debug.LogError("WeaponTripleShot: bullet or bulletSpawnPoint not assigned");
-                return;
-            }
-            //Debug log for triple shot.
-            print("Shoot triple shot");
-
-            // Offset for bullet directions. 
-            float xOffset = -0.5f;
-
-            // Create 3 bullets, each with a slightly different direction. 
-            for (int i = 0; i < 3; i++) 
-            {
-                // Instantiate bullet at the spawn point and weapon's rotation. 
-                GameObject newBullet = Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
-
-                // Set the direction for the bullet. 
-                MoveConstantly move = newBullet.GetComponent<MoveConstantly>();
-                if (move != null)
-                {
-                    move.Direction = new Vector2(xOffset + 0.5f * i, 0.5f);
-                }
-                else
-                {
-                    Debug.Log("WeaponTripleShot: Bullet prefab is missing MoveConstantly script!");
-                }
-            }*/
-
-            // Update the last fired time. 
+    
+           // Update the last fired time. 
             lastFiredTime = currentTime;
         }
     }

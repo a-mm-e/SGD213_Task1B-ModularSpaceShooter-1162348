@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         currentHealth = maxHealth;
     }
 
-    // <summary>
+    /// <summary>
     /// Heal handles the functionality of receiving health
     /// </summary>
     /// <param name="healingAmount">The amount of health to gain, this value should be positive</param>

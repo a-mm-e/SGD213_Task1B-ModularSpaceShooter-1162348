@@ -95,5 +95,4 @@ public class PlayerInput : MonoBehaviour
 
         Debug.Log($"Swapped to: {weaponType}, Current weapon: {newWeapon.GetType().Name}");
     }
-
 }

@@ -18,6 +18,5 @@ public class DestroyedOnCollision : DetectCollisionBase
         {
             Destroy(other);
         }
-        
     }
 }

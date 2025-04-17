@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// PlayerMovementScript handles all of the movement specifc state and behaviour for the player.
@@ -26,9 +26,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     /// <param name="horizontalInput">Raw horizontal input value. Expected to be between -1 and 1. 
     /// Number outside this range increase movement speed. A value of 0 is ignored.</param>
-   public void MovePlayer(float horizontalInput) {
+   public void MovePlayer(float horizontalInput) 
+    {
         // a horizontalInput of 0 has no effect, as we want our ship to drift
-        if (horizontalInput != 0) {
+        if (horizontalInput != 0) 
+        {
             //calculate our force to add
             Vector2 forceToAdd = Vector2.right * horizontalInput * horizontalPlayerAcceleration * Time.deltaTime;
             // apply forceToAdd to ourRigidbody

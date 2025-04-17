@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+
 
 /// <summary>
 /// MoveConstantly gives an object the ability to continuously move based on the
